@@ -300,7 +300,9 @@ struct ContentView: View {
                 .foregroundColor(.white)
             ForEach(Difficulty.allCases, id: \.self) { level in
                 Button {
+                    guard engine.difficulty != level else { return }
                     engine.difficulty = level
+                    engine.resetGame()
                 } label: {
                     HStack(spacing: 3) {
                         Text(difficultyEmojis[level] ?? "")
